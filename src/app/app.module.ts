@@ -17,6 +17,11 @@ import { IndexComponent } from './index/index.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 import { interceptorProvider } from './interceptors/educ-interceptor.service';
+import {AlifeFileToBase64Module} from'alife-file-to-base64';
+import { ProyectosComponent } from './proyectos/proyectos.component';
+import { HabilidadesComponent } from './habilidades/habilidades.component';
+import { PersonaComponent } from './persona/persona.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,10 @@ import { interceptorProvider } from './interceptors/educ-interceptor.service';
     LoginComponent,
     RegistroComponent,
     MenuComponent,
-    IndexComponent
+    IndexComponent,
+    ProyectosComponent,
+    HabilidadesComponent,
+    PersonaComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +43,11 @@ import { interceptorProvider } from './interceptors/educ-interceptor.service';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
-    
+    ToastrModule.forRoot(),
+    AlifeFileToBase64Module
   ],
-  providers: [interceptorProvider],
+
+  providers: [interceptorProvider,NgbModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

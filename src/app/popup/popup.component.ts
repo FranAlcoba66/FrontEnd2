@@ -31,6 +31,7 @@ export class PopupComponent implements OnInit {
   closeResult: string;
   editForm: FormGroup;
   private deleteId: number;
+  base64:String;
 
   constructor(config: NgbModalConfig, 
     private modalService: NgbModal,
@@ -52,26 +53,31 @@ export class PopupComponent implements OnInit {
       institucion: [''],
       fechaIni: [''],
       fechaFin: [''],
+      imagen:[''],
     });
   }
 
 
-    public getEducacion(){
-    this.EducacionService.getEducacion().subscribe(data => (this.educacion = data))
-  }
-
-
-  //  getEducacion(){
-  //   this.httpClient.get<any>('http://localhost:8080/educacion/traer').subscribe(
-  //      response =>{
-  //       console.log(response);
-  //       this.educacion =response;
-  //     }
-  //   )
+  //   public getEducacion(){
+  //   this.EducacionService.getEducacion().subscribe(data => (this.educacion = data))
   // }
 
 
+   getEducacion(){
+    this.httpClient.get<any>('http://localhost:8080/educacion/traer').subscribe(
+       response =>{
+        console.log(response);
+        this.educacion =response;
+      }
+    )
+  }
+  obtener(e: any) {     
+    this.base64 = e[0].base64; 
+    this.editForm.value.imagen=this.base64;  
+  }
+
   onSubmit(f: NgForm) {
+    f.form.value.imagen=this.base64;
     console.log(f.form.value);
     const url = 'http://localhost:8080/educacion/crear';
     this.httpClient.post(url, f.value)
@@ -93,6 +99,7 @@ export class PopupComponent implements OnInit {
       institucion: educacion.institucion,
       fechaIni: educacion.fechaIni,
       fechaFin: educacion.fechaFin,
+      imagen: educacion.imagen,
     
     });
    }

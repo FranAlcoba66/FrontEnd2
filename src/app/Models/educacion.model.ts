@@ -4,6 +4,7 @@ export class Educacion{
     institucion:String;
     fechaIni:String;
     fechaFin:String;
+    imagen:String;
 
     // constructor(id:number,nombre:String,institucion:String,fechaIni:String,fechaFin:String){
     //     this.id=id;
