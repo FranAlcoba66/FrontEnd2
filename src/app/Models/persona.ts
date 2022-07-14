@@ -3,6 +3,7 @@ export class Persona {
     nombre:String;
     apellido:String;
     titulo:String;
+    acercaDe:String;
     img:String;
     banner:String;
 }

@@ -13,9 +13,7 @@ export class EducacionService {
   
   constructor(private http: HttpClient) { }
 
-  // get refresh$(){
-  //   return this._refresh$;
-  // }
+ 
 
   public getEducacion(): Observable<Educacion[]>  {
     return this.http.get<Educacion[]>(this.URL + 'traer');
@@ -25,11 +23,6 @@ export class EducacionService {
   }
   public addEducacion(educacion: Educacion) {
     return this.http.post<Educacion>(this.URL + 'crear', educacion);
-    // .pipe(
-    //   tap(()=>{
-    //     this._refresh$.next();
-    //   })
-    // )
   }
 
   public deleteEducacion(id: any) {
@@ -38,11 +31,6 @@ export class EducacionService {
 
   public updateEducacion(educacion: Educacion) {
     return this.http.put<Educacion>(this.URL + 'editar/'+ educacion.id,educacion)
-    // .pipe(
-    //   tap(()=>{
-    //     this._refresh$.next();
-    //   })
-    // )
   }
  
 

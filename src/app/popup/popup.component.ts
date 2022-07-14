@@ -76,6 +76,14 @@ export class PopupComponent implements OnInit {
     this.editForm.value.imagen=this.base64;  
   }
 
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+  
   onSubmit(f: NgForm) {
     f.form.value.imagen=this.base64;
     console.log(f.form.value);
@@ -133,13 +141,6 @@ export class PopupComponent implements OnInit {
   }
 
 
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
