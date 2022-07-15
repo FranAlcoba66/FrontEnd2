@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Persona } from '../Models/persona';
 import { PersonaService } from '../Services/persona.service';
+import { TokenService } from '../Services/token.service';
 
 @Component({
   selector: 'app-persona',
@@ -18,12 +19,16 @@ export class PersonaComponent implements OnInit {
   private deleteId: number;
   base64:String;
 
+  isAdmin = false;
+  roles: string[];
+
 
   constructor(config: NgbModalConfig, 
     private modalService: NgbModal,
     private fb:FormBuilder,
     public httpClient:HttpClient,
-    private PersonaService:PersonaService) {
+    private PersonaService:PersonaService,
+    private tokenService:TokenService) {
       // customize default values of modals used by this component tree
       config.backdrop = 'static';
       config.keyboard = false;
@@ -42,13 +47,31 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  getPersona(){
-    this.PersonaService.getPersona().subscribe(data=>(this.persona=data));
+  
+  getPersona():void {
+    this.PersonaService.getPersona().subscribe(
+      data => {
+        this.persona = data;
+      }),
+
+      this.roles = this.tokenService.getAuthorities();
+      this.roles.forEach(rol => {
+        if (rol === 'ROLE_ADMIN') {
+          this.isAdmin = true;
+        }
+      });
   }
 
-  updatePersona(persona:Persona){
-    this.PersonaService.updatePersona(persona).subscribe(data=>(this.persona=data));
-  }
+
+
+
+  // getPersona(){
+  //   this.PersonaService.getPersona().subscribe(data=>(this.persona=data));
+  // }
+
+  // updatePersona(persona:Persona){
+  //   this.PersonaService.updatePersona(persona).subscribe(data=>(this.persona=data));
+  // }
 
   obtener(e: any) {     
     this.base64 = e[0].base64; 

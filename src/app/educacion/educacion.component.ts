@@ -1,19 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
-import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Proyecto } from '../Models/proyecto';
-import { ProyectoService } from '../Services/proyecto.service';
+import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
+import { NgbModalConfig, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Educacion } from '../Models/educacion.model';
+import { EducacionService } from '../Services/educacion.service';
 import { TokenService } from '../Services/token.service';
 
 @Component({
-  selector: 'app-proyectos',
-  templateUrl: './proyectos.component.html',
-  styleUrls: ['./proyectos.component.css']
+  selector: 'app-educacion',
+  templateUrl: './educacion.component.html',
+  styleUrls: ['./educacion.component.css']
 })
-export class ProyectosComponent implements OnInit {
-  
-  proyecto:Proyecto[];
+export class EducacionComponent implements OnInit {
+
+
+  educacion: Educacion[];
   closeResult: string;
   editForm: FormGroup;
   private deleteId: number;
@@ -26,22 +27,30 @@ export class ProyectosComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     public httpClient:HttpClient,
-    private ProyectoService:ProyectoService,
-    private tokenService:TokenService) { }
+    private EducacionService:EducacionService,
+    private tokenService:TokenService) {
+    // customize default values of modals used by this component tree
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
+  
 
   ngOnInit(): void {
-    this.getProyecto();
+    this.getEducacion();
     this.editForm = this.fb.group({
       id: [''],
-      titulo: [''],
-      descripcion: [''],
-      img:[''],
+      nombre: [''],
+      institucion: [''],
+      fechaIni: [''],
+      fechaFin: [''],
+      imagen:[''],
     });
   }
 
-  public getProyecto(){
-    this.ProyectoService.getProyecto().subscribe(data=>(this.proyecto=data));
+
+    public getEducacion(){
+    this.EducacionService.getEducacion().subscribe(data => (this.educacion = data));
 
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach(rol => {
@@ -51,11 +60,19 @@ export class ProyectosComponent implements OnInit {
     });
   }
 
+
+  //  getEducacion(){
+  //   this.httpClient.get<any>('http://localhost:8080/educacion/traer').subscribe(
+  //      response =>{
+  //       console.log(response);
+  //       this.educacion =response;
+  //     }
+  //   )
+  // }
   obtener(e: any) {     
     this.base64 = e[0].base64; 
-    this.editForm.value.img=this.base64;  
+    this.editForm.value.imagen=this.base64;  
   }
-
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -66,9 +83,9 @@ export class ProyectosComponent implements OnInit {
   }
   
   onSubmit(f: NgForm) {
-    f.form.value.img=this.base64;
+    f.form.value.imagen=this.base64;
     console.log(f.form.value);
-    const url = 'http://localhost:8080/proyecto/crear';
+    const url = 'http://localhost:8080/educacion/crear';
     this.httpClient.post(url, f.value)
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
@@ -76,17 +93,19 @@ export class ProyectosComponent implements OnInit {
     this.modalService.dismissAll(); // dismiss the modal
   }
 
-  openEdit(targetModal, proyecto:Proyecto) {
+  openEdit(targetModal, educacion:Educacion) {
     this.modalService.open(targetModal, {
       centered: true,
       backdrop: 'static',
       size: 'lg'
     });
     this.editForm.patchValue( {
-      id: proyecto.id,
-      titulo: proyecto.titulo,
-      descripcion: proyecto.descripcion,
-      img: proyecto.img,
+      id: educacion.id,
+      nombre: educacion.nombre,
+      institucion: educacion.institucion,
+      fechaIni: educacion.fechaIni,
+      fechaFin: educacion.fechaFin,
+      imagen: educacion.imagen,
     
     });
    }
@@ -94,7 +113,7 @@ export class ProyectosComponent implements OnInit {
 
 
   onSave() {
-    const editURL = 'http://localhost:8080/proyecto/' + 'editar/'  + this.editForm.value.id ;
+    const editURL = 'http://localhost:8080/educacion/' + 'editar/'  + this.editForm.value.id ;
     this.httpClient.put(editURL, this.editForm.value)
       .subscribe((results) => {
         this.ngOnInit();
@@ -102,8 +121,8 @@ export class ProyectosComponent implements OnInit {
       });
   }
 
-  openDelete(targetModal, proyecto:Proyecto) {
-    this.deleteId = proyecto.id;
+  openDelete(targetModal, educacion:Educacion) {
+    this.deleteId = educacion.id;
     this.modalService.open(targetModal, {
       backdrop: 'static',
       size: 'lg'
@@ -111,15 +130,13 @@ export class ProyectosComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:8080/proyecto/' +  'borrar/'+ this.deleteId ;
+    const deleteURL = 'http://localhost:8080/educacion/' +  'borrar/'+ this.deleteId ;
     this.httpClient.delete(deleteURL)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
       });
   }
-
-
 
 
 
@@ -134,5 +151,10 @@ export class ProyectosComponent implements OnInit {
   }
 
 
+}
 
+
+
+function next(next: any, arg1: (response: any) => void) {
+  throw new Error('Function not implemented.');
 }

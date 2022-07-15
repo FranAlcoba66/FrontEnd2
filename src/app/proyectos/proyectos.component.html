@@ -1,6 +1,6 @@
 <div class="container">
     <div class="d-flex justify-content-between">
-    <h2>Proyectos</h2> <button (click)="open(content)" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
+    <h2>Proyectos</h2> <button *ngIf="isAdmin" (click)="open(content)" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
     </div>
     <br>
     <div class="row">
@@ -12,8 +12,8 @@
                <h5 class="card-title">{{proyecto.titulo}}</h5>
               </div>
               <div class="col">
-                <button (click)="openEdit(contentEdit,proyecto)" class="btn btn-light"><i class="bi bi-pencil"></i></button>
-                <button (click)="openDelete(contentDelete,proyecto)" class="btn btn-light"><i class="bi bi-trash"></i></button>
+                <button *ngIf="isAdmin" (click)="openEdit(contentEdit,proyecto)" class="btn btn-light"><i class="bi bi-pencil"></i></button>
+                <button *ngIf="isAdmin" (click)="openDelete(contentDelete,proyecto)" class="btn btn-light"><i class="bi bi-trash"></i></button>
               </div>
             <p class="card-text">{{proyecto.descripcion}} </p>
           <button class="btn btn-primary">Go somewhere</button>

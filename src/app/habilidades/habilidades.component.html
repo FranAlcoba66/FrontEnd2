@@ -1,6 +1,6 @@
   <div class="container">
     <div class="col-12 d-flex justify-content-between">
-      <h2>Habilidades</h2><button class="btn btn-light" (click)="open(content)"><i class="bi bi-plus-square"></i></button>
+      <h2>Habilidades</h2><button *ngIf="isAdmin" class="btn btn-light" (click)="open(content)"><i class="bi bi-plus-square"></i></button>
     </div>
     <br>
       
@@ -13,8 +13,8 @@
                   <h5>{{habilidad.nombre}}</h5> 
               </div>
               <div class="d-flex justify-content-end">
-                  <button class="btn btn-light" (click)="openEdit(contentEdit,habilidad)"><i class="bi bi-pencil"></i></button>
-                  <button class="btn btn-light" (click)="openDelete(contentDelete,habilidad)"> <i class="bi bi-trash"></i> </button>
+                  <button *ngIf="isAdmin" class="btn btn-light" (click)="openEdit(contentEdit,habilidad)"><i class="bi bi-pencil"></i></button>
+                  <button *ngIf="isAdmin" class="btn btn-light" (click)="openDelete(contentDelete,habilidad)"> <i class="bi bi-trash"></i> </button>
               </div>       
           </div>         
         <div >

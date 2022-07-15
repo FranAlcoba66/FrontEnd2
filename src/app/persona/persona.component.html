@@ -36,7 +36,7 @@
         
           <div class="col">
             <div class="d-flex justify-content-end">
-              <button  (click)="openEdit(contentEdit,persona)" class="btn btn-light"><i class="bi bi-pencil"></i></button>   
+              <button *ngIf="isAdmin" (click)="openEdit(contentEdit,persona)" class="btn btn-light"><i class="bi bi-pencil"></i></button>   
           </div>
           </div>
   

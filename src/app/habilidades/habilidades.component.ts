@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Habilidad } from '../Models/habilidad.model';
 import { HabilidadService } from '../Services/habilidad.service';
+import { TokenService } from '../Services/token.service';
 
 
 @Component({
@@ -20,12 +21,16 @@ export class HabilidadesComponent implements OnInit {
   private deleteId: number;
   base64:String;
 
+  isAdmin = false;
+  roles: string[];
+
 
   constructor(config: NgbModalConfig, 
     private modalService: NgbModal,
     private fb: FormBuilder,
     public httpClient:HttpClient,
-    private HabilidadService:HabilidadService
+    private HabilidadService:HabilidadService,
+    private tokenService:TokenService,
     ) {
        // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -45,21 +50,28 @@ export class HabilidadesComponent implements OnInit {
 
   
 
-  // public getHabilidad(){
-  //   this.HabilidadService.getHabilidad().subscribe(data=>{
-  //     console.log(data);
-  //     this.habilidad =data;
-  //   });  
-  // }
-
   public getHabilidad(){
-    this.httpClient.get<any>('http://localhost:8080/habilidad/traer').subscribe(
-       response =>{
-        console.log(response);
-        this.habilidad =response;
+    this.HabilidadService.getHabilidad().subscribe(data=>{
+      // console.log(data);
+      this.habilidad =data;
+    });  
+
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
       }
-    )
+    });
   }
+
+  // public getHabilidad(){
+  //   this.httpClient.get<any>('http://localhost:8080/habilidad/traer').subscribe(
+  //      response =>{
+  //       console.log(response);
+  //       this.habilidad =response;
+  //     }
+  //   )
+  // }
 
 
 

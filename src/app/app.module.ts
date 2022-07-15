@@ -21,6 +21,8 @@ import {AlifeFileToBase64Module} from'alife-file-to-base64';
 import { ProyectosComponent } from './proyectos/proyectos.component';
 import { HabilidadesComponent } from './habilidades/habilidades.component';
 import { PersonaComponent } from './persona/persona.component';
+import { ExperienciaComponent } from './experiencia/experiencia.component';
+import { EducacionComponent } from './educacion/educacion.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { PersonaComponent } from './persona/persona.component';
     IndexComponent,
     ProyectosComponent,
     HabilidadesComponent,
-    PersonaComponent
+    PersonaComponent,
+    ExperienciaComponent,
+    EducacionComponent
   ],
   imports: [
     BrowserModule,
