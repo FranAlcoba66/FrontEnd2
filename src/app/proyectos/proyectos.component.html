@@ -1,24 +1,30 @@
 <div class="container">
     <div class="d-flex justify-content-between">
-    <h2>Proyectos</h2> <button *ngIf="isAdmin" (click)="open(content)" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
+    <h2> <i class="bi bi-code-square" ></i> Proyectos</h2>
+     <button *ngIf="isAdmin" (click)="open(content)" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
     </div>
     <br>
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
       <div *ngFor="let proyecto of proyecto">  
-        <div class="card" style="width: 30rem;">
+
+      
+        <div class="card ">
+          <div class="col">
         <img src="{{proyecto.img}}" class="card-img-top" alt="...">
         <div class="card-body">
-            <div class="col">
-               <h5 class="card-title">{{proyecto.titulo}}</h5>
-              </div>
+            
               <div class="col">
                 <button *ngIf="isAdmin" (click)="openEdit(contentEdit,proyecto)" class="btn btn-light"><i class="bi bi-pencil"></i></button>
                 <button *ngIf="isAdmin" (click)="openDelete(contentDelete,proyecto)" class="btn btn-light"><i class="bi bi-trash"></i></button>
               </div>
+              <div class="col">
+                <h5 class="card-title">{{proyecto.titulo}}</h5>
+               </div>
             <p class="card-text">{{proyecto.descripcion}} </p>
           <button class="btn btn-primary">Go somewhere</button>
         </div>
         </div>  
+      </div>
       </div>
     </div>  
   </div>

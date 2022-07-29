@@ -97,6 +97,7 @@ export class HabilidadesComponent implements OnInit {
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
+      f.form.value.logo=this.base64='';
     this.modalService.dismissAll(); // dismiss the modal
   }
 

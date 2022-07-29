@@ -90,6 +90,7 @@ export class EducacionComponent implements OnInit {
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
+      f.form.value.imagen=this.base64='';
     this.modalService.dismissAll(); // dismiss the modal
   }
 

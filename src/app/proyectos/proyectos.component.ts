@@ -73,6 +73,7 @@ export class ProyectosComponent implements OnInit {
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
+      f.form.value.img=this.base64='';
     this.modalService.dismissAll(); // dismiss the modal
   }
 

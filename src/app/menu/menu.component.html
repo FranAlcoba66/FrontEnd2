@@ -1,22 +1,82 @@
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+  <div class="col-2">
+    <a class="navbar-brand" href="#"> <img src="assets/img/logo_argprograma_recortado.png" alt="" width="110"> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <!-- <li class="nav-item">
-          <a class="nav-link" routerLink="/"><i class="fas fa-home"></i> Inicio</a>
-        </li> -->
+  </div>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      
         
-        <li class="nav-item" *ngIf="!isLogged">
-            <a class="nav-link"  routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión</a>
-          </li>
-          <li class="nav-item" *ngIf="isLogged" (click)="onLogOut()">
-            <a class="nav-link" style="cursor: pointer;"><i class="bi bi-box-arrow-left"></i> Cerrar Sesión</a>
-          </li>
+
         
-      </ul>
-    </div>
+    
+        <button class="btn btn-dark mx-auto">
+          <a href="https://www.linkedin.com/in/francisco-adri%C3%A1n-alcoba/">
+          <i class="bi bi-linkedin" style="font-size: 1.5em;color:rgb(10, 102, 194);"></i>
+          </a>
+        </button>
+        <button class="btn btn-dark mx-auto">
+          <a href="https://www.instagram.com/franalcoba666/">
+          <i class="bi bi-instagram" style="font-size: 1.5em;color:rgb(239, 42, 186);"></i>
+          </a>
+        </button>
+        <button class="btn btn-dark mx-auto">
+          <a href="https://github.com/FranAlcoba66">
+          <i class="bi bi-github" style="font-size: 1.5em;color:rgb(255, 255, 255);"></i>
+          </a>
+        </button>
+       
+        <button class="btn btn-dark ms-auto" *ngIf="!isLogged" routerLink="/login" style="cursor: pointer;"> 
+          <i class="bi bi-box-arrow-in-right"></i> LogIn
+       </button>
+  
+       
+          <button class="btn btn-dark ms-auto" style="cursor: pointer;"  *ngIf="isLogged" (click)="onLogOut()"> 
+            <i class="bi bi-box-arrow-left"></i>LogOut
+         </button>
+    
+  </div>
+
   </nav>
+
+
+
+<!--   
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <div class="col-2">
+    <a class="navbar-brand" href="#"> <img src="assets/img/logo_argprograma_recortado.png" alt="" width="110"> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav ms-auto">
+        
+
+    <li>
+      <a class="btn btn-dark " href="#" role="button"><i class="bi bi-linkedin" style="font-size: 1.5em;color:rgb(10, 102, 194);"></i></a>
+    </li>
+    
+ 
+    <li>
+      <a class="btn btn-dark" href="#" role="button"><i class="bi bi-github" style="font-size: 1.5em;"></i></a>
+    </li>
+        
+      <div class="ms-auto">
+      <li class="nav-item " *ngIf="!isLogged">
+        <a class="nav-link"  routerLink="/login"><i class="bi bi-box-arrow-in-right"></i> LogIn</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogged" (click)="onLogOut()">
+        <a class="nav-link" style="cursor: pointer;"><i class="bi bi-box-arrow-left"></i> LogOut</a>
+      </li>
+      </div>
+
+
+    </ul>
+  </div>
+
+  </nav> -->
+
+
