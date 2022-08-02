@@ -94,7 +94,7 @@
              alife-file-to-base64 (onFileChanged)="obtener($event)"
              formControlName="img" 
              class="form-control">
-            <img src="{{base64}}" height="100px"> 
+          <img src="{{this.editForm.value.img}}" height="100px"> 
           </div>
         </div>
         
@@ -105,7 +105,7 @@
              alife-file-to-base64 (onFileChanged)="obtener2($event)"
              formControlName="banner" 
              class="form-control">
-            <img src="{{base64}}" height="100px"> 
+            <img src="{{this.editForm.value.banner}}" height="100px"> 
           </div>
         </div>
       </form>

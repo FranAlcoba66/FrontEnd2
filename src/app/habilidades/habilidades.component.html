@@ -111,7 +111,7 @@
                 name="porcentaje"
                 class="form-range"
                 formControlName="porcentaje"
-                ngModelChange/>
+              [(ngModel)]="this.editForm.value.porcentaje" />
             </div>
         </div>
        
@@ -123,7 +123,7 @@
             alife-file-to-base64 (onFileChanged)="obtener($event)" 
             formControlName="logo" 
             class="form-control">
-            <img src="{{base64}}" height="100px"> 
+            <img src="{{this.editForm.value.logo}}" height="100px"> 
           </div>
         </div>
 

@@ -27,7 +27,7 @@ export class PersonaComponent implements OnInit {
     private modalService: NgbModal,
     private fb:FormBuilder,
     public httpClient:HttpClient,
-    private PersonaService:PersonaService,
+    private personaService:PersonaService,
     private tokenService:TokenService) {
       // customize default values of modals used by this component tree
       config.backdrop = 'static';
@@ -49,7 +49,7 @@ export class PersonaComponent implements OnInit {
 
   
   getPersona():void {
-    this.PersonaService.getPersona().subscribe(
+    this.personaService.getPersona().subscribe(
       data => {
         this.persona = data;
       }),
@@ -64,22 +64,16 @@ export class PersonaComponent implements OnInit {
 
 
 
+  obtener(e:any): void {     
+    this.editForm.value.img= e[0].base64;
+    // this.base64 = e[0].base64; 
+    // this.editForm.value.img=this.base64;  
 
-  // getPersona(){
-  //   this.PersonaService.getPersona().subscribe(data=>(this.persona=data));
-  // }
-
-  // updatePersona(persona:Persona){
-  //   this.PersonaService.updatePersona(persona).subscribe(data=>(this.persona=data));
-  // }
-
-  obtener(e: any) {     
-    this.base64 = e[0].base64; 
-    this.editForm.value.img=this.base64;  
   }
-  obtener2(e: any) {     
-    this.base64 = e[0].base64; 
-    this.editForm.value.banner=this.base64;  
+  obtener2(e:any): void {     
+    this.editForm.value.banner= e[0].base64;
+  //  this.base64 = e[0].base64; 
+  //   this.editForm.value.banner=this.base64;  
   }
 
 
@@ -98,8 +92,6 @@ export class PersonaComponent implements OnInit {
       acercaDe: persona.acercaDe,
       img: persona.img,
       banner: persona.banner,
-      
-    
     });
    }
 
@@ -107,8 +99,7 @@ export class PersonaComponent implements OnInit {
 
 
   onSave() {
-    const editURL = 'http://localhost:8080/persona/' + 'editar/'  + this.editForm.value.id ;
-    this.httpClient.put(editURL, this.editForm.value)
+    this.personaService.updatePersona(this.editForm.value)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();

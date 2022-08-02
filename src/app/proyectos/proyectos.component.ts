@@ -26,7 +26,7 @@ export class ProyectosComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     public httpClient:HttpClient,
-    private ProyectoService:ProyectoService,
+    private proyectoService:ProyectoService,
     private tokenService:TokenService) { }
 
 
@@ -41,7 +41,7 @@ export class ProyectosComponent implements OnInit {
   }
 
   public getProyecto(){
-    this.ProyectoService.getProyecto().subscribe(data=>(this.proyecto=data));
+    this.proyectoService.getProyecto().subscribe(data=>(this.proyecto=data));
 
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach(rol => {
@@ -51,10 +51,13 @@ export class ProyectosComponent implements OnInit {
     });
   }
 
-  obtener(e: any) {     
-    this.base64 = e[0].base64; 
-    this.editForm.value.img=this.base64;  
+  obtener(e:any): void {     
+    this.editForm.value.img= e[0].base64;
+    // this.base64 = e[0].base64; 
+    // this.editForm.value.img=this.base64;  
   }
+
+  
 
 
   open(content) {
@@ -68,8 +71,7 @@ export class ProyectosComponent implements OnInit {
   onSubmit(f: NgForm) {
     f.form.value.img=this.base64;
     console.log(f.form.value);
-    const url = 'http://localhost:8080/proyecto/crear';
-    this.httpClient.post(url, f.value)
+    this.proyectoService.addProyecto(f.value)
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
@@ -95,8 +97,7 @@ export class ProyectosComponent implements OnInit {
 
 
   onSave() {
-    const editURL = 'http://localhost:8080/proyecto/' + 'editar/'  + this.editForm.value.id ;
-    this.httpClient.put(editURL, this.editForm.value)
+    this.proyectoService.updateProyecto(this.editForm.value)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
@@ -112,8 +113,7 @@ export class ProyectosComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:8080/proyecto/' +  'borrar/'+ this.deleteId ;
-    this.httpClient.delete(deleteURL)
+    this.proyectoService.deleteProyecto(this.deleteId)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();

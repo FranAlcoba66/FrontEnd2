@@ -27,7 +27,7 @@ export class ExperienciaComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     public httpClient:HttpClient,
-    private ExperienciaService:ExprienciaService,
+    private experienciaService:ExprienciaService,
     private tokenService:TokenService) { 
       // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -48,7 +48,7 @@ export class ExperienciaComponent implements OnInit {
   }
 
   public getExperiencia(){
-    this.ExperienciaService.getExperiencia().subscribe(data => (this.experiencia = data));
+    this.experienciaService.getExperiencia().subscribe(data => (this.experiencia = data));
 
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach(rol => {
@@ -58,11 +58,16 @@ export class ExperienciaComponent implements OnInit {
     });
   }
 
-
-  obtener(e: any) {     
-    this.base64 = e[0].base64; 
-    this.editForm.value.imagen=this.base64;  
+  obtener(e:any): void {     
+    this.editForm.value.imagen= e[0].base64;
+    // this.base64 = e[0].base64; 
+    // this.editForm.value.img=this.base64;  
   }
+
+  // obtener(e: any) {     
+  //   this.base64 = e[0].base64; 
+  //   this.editForm.value.imagen=this.base64;  
+  // }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -75,8 +80,7 @@ export class ExperienciaComponent implements OnInit {
   onSubmit(f: NgForm) {
     f.form.value.imagen=this.base64;
     console.log(f.form.value);
-    const url = 'http://localhost:8080/experiencia/crear';
-    this.httpClient.post(url, f.value)
+    this.experienciaService.addExperiencia(f.value)
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
@@ -103,9 +107,9 @@ export class ExperienciaComponent implements OnInit {
 
 
 
+
   onSave() {
-    const editURL = 'http://localhost:8080/experiencia/' + 'editar/'  + this.editForm.value.id ;
-    this.httpClient.put(editURL, this.editForm.value)
+    this.experienciaService.updateExperiencia(this.editForm.value)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
@@ -121,8 +125,7 @@ export class ExperienciaComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:8080/experiencia/' +  'borrar/'+ this.deleteId ;
-    this.httpClient.delete(deleteURL)
+    this.experienciaService.deleteExperiencia(this.deleteId)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();

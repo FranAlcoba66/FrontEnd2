@@ -99,7 +99,7 @@
     <ng-template #contentEdit let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title2">Editar Educacion</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="btn btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -142,7 +142,7 @@
                alife-file-to-base64 (onFileChanged)="obtener($event)"
                formControlName="imagen" 
                class="form-control">
-              <img src="{{base64}}" height="100px"> 
+              <img src="{{this.editForm.value.imagen}}" height="100px"> 
             </div>
           </div>
         </form>

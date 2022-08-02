@@ -64,16 +64,6 @@ export class HabilidadesComponent implements OnInit {
     });
   }
 
-  // public getHabilidad(){
-  //   this.httpClient.get<any>('http://localhost:8080/habilidad/traer').subscribe(
-  //      response =>{
-  //       console.log(response);
-  //       this.habilidad =response;
-  //     }
-  //   )
-  // }
-
-
 
 
   obtener(e: any) {     
@@ -92,8 +82,7 @@ export class HabilidadesComponent implements OnInit {
   onSubmit(f: NgForm) {
     f.form.value.logo=this.base64;
     console.log(f.form.value);
-    const url = 'http://localhost:8080/habilidad/crear';
-    this.httpClient.post(url, f.value)
+    this.HabilidadService.addHabilidad(f.value)
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
@@ -119,8 +108,7 @@ export class HabilidadesComponent implements OnInit {
 
 
   onSave() {  
-    const editURL = 'http://localhost:8080/habilidad/' + 'editar/'  + this.editForm.value.id ;
-    this.httpClient.put(editURL, this.editForm.value)
+    this.HabilidadService.updateHabilidad(this.editForm.value)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
@@ -137,8 +125,7 @@ export class HabilidadesComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:8080/habilidad/' +  'borrar/'+ this.deleteId ;
-    this.httpClient.delete(deleteURL)
+   this.HabilidadService.deleteHabilidad(this.deleteId)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();

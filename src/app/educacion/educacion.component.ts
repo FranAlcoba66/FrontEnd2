@@ -27,14 +27,13 @@ export class EducacionComponent implements OnInit {
     private modalService: NgbModal,
     private fb: FormBuilder,
     public httpClient:HttpClient,
-    private EducacionService:EducacionService,
+    private educacionService:EducacionService,
     private tokenService:TokenService) {
-    // customize default values of modals used by this component tree
+    //config
     config.backdrop = 'static';
     config.keyboard = false;
   }
 
-  
 
   ngOnInit(): void {
     this.getEducacion();
@@ -50,7 +49,7 @@ export class EducacionComponent implements OnInit {
 
 
     public getEducacion(){
-    this.EducacionService.getEducacion().subscribe(data => (this.educacion = data));
+    this.educacionService.getEducacion().subscribe(data => (this.educacion = data));
 
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach(rol => {
@@ -60,19 +59,14 @@ export class EducacionComponent implements OnInit {
     });
   }
 
-
-  //  getEducacion(){
-  //   this.httpClient.get<any>('http://localhost:8080/educacion/traer').subscribe(
-  //      response =>{
-  //       console.log(response);
-  //       this.educacion =response;
-  //     }
-  //   )
-  // }
-  obtener(e: any) {     
-    this.base64 = e[0].base64; 
-    this.editForm.value.imagen=this.base64;  
+  obtener(e:any): void {     
+    this.editForm.value.imagen= e[0].base64;
+    // this.base64 = e[0].base64; 
+    // this.editForm.value.imagen=this.base64;  
   }
+
+
+
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -85,12 +79,11 @@ export class EducacionComponent implements OnInit {
   onSubmit(f: NgForm) {
     f.form.value.imagen=this.base64;
     console.log(f.form.value);
-    const url = 'http://localhost:8080/educacion/crear';
-    this.httpClient.post(url, f.value)
+    this.educacionService.addEducacion(f.value)
       .subscribe((result) => {
         this.ngOnInit(); // reload the table
       });
-      f.form.value.imagen=this.base64='';
+     f.form.value.imagen=this.base64='';
     this.modalService.dismissAll(); // dismiss the modal
   }
 
@@ -114,8 +107,7 @@ export class EducacionComponent implements OnInit {
 
 
   onSave() {
-    const editURL = 'http://localhost:8080/educacion/' + 'editar/'  + this.editForm.value.id ;
-    this.httpClient.put(editURL, this.editForm.value)
+    this.educacionService.updateEducacion(this.editForm.value)
       .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
@@ -131,9 +123,7 @@ export class EducacionComponent implements OnInit {
   }
 
   onDelete() {
-    const deleteURL = 'http://localhost:8080/educacion/' +  'borrar/'+ this.deleteId ;
-    this.httpClient.delete(deleteURL)
-      .subscribe((results) => {
+    this.educacionService.deleteEducacion(this.deleteId) .subscribe((results) => {
         this.ngOnInit();
         this.modalService.dismissAll();
       });
@@ -155,7 +145,7 @@ export class EducacionComponent implements OnInit {
 }
 
 
-
 function next(next: any, arg1: (response: any) => void) {
   throw new Error('Function not implemented.');
 }
+
