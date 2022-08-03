@@ -65,15 +65,13 @@ export class PersonaComponent implements OnInit {
 
 
   obtener(e:any): void {     
-    this.editForm.value.img= e[0].base64;
-    // this.base64 = e[0].base64; 
-    // this.editForm.value.img=this.base64;  
-
+    this.base64 = e[0].base64; 
+    this.editForm.value.img=this.base64;  
   }
+
   obtener2(e:any): void {     
-    this.editForm.value.banner= e[0].base64;
-  //  this.base64 = e[0].base64; 
-  //   this.editForm.value.banner=this.base64;  
+    this.base64 = e[0].base64; 
+    this.editForm.value.banner=this.base64;  
   }
 
 
