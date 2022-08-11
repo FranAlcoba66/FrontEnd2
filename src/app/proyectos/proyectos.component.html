@@ -21,7 +21,8 @@
                 <h5 class="card-title">{{proyecto.titulo}}</h5>
                </div>
             <p class="card-text">{{proyecto.descripcion}} </p>
-          <button class="btn btn-primary">Go somewhere</button>
+            
+          <button class="btn btn-primary"><a href="{{proyecto.link}}" style="color:white;">Enlace</a></button>
         </div>
         </div>  
       </div>
@@ -29,7 +30,7 @@
     </div>  
   </div>
   
-
+<!-- Modal Agregar Proyecto -->
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Agregar Proyecto</h4>
@@ -56,6 +57,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="link">Link:</label>
+          <div class="input-group">
+            <input id="link" name="link" class="form-control" ngModel>
+          </div>
+        </div>
+        <div class="form-group">
           <label for="img">Imagen:</label>
           <div class="input-group">
             <input type="file" 
@@ -76,7 +83,7 @@
     </div>
   </ng-template>
 
-
+<!-- Modal Editar Proyecto -->
   <ng-template #contentEdit let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title2">Editar Educacion</h4>
@@ -105,6 +112,13 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="link">Link:</label>
+          <div class="input-group">
+            <input formControlName="link" class="form-control">
+          </div>
+        </div>
+        
+        <div class="form-group">
           <label for="img">Imagen:</label>
           <div class="input-group">
             <input type="file"
@@ -124,7 +138,7 @@
     </div>
   </ng-template>
 
-    
+<!-- Modal Eliminar Proyecto -->    
     <ng-template #contentDelete let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Eliminar Proyecto</h4>

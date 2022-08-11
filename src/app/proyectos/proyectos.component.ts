@@ -36,6 +36,7 @@ export class ProyectosComponent implements OnInit {
       id: [''],
       titulo: [''],
       descripcion: [''],
+      link:[''],
       img:[''],
     });
   }
@@ -88,6 +89,7 @@ export class ProyectosComponent implements OnInit {
       id: proyecto.id,
       titulo: proyecto.titulo,
       descripcion: proyecto.descripcion,
+      link: proyecto.link,
       img: proyecto.img,
     
     });
