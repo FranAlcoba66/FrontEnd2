@@ -1,159 +1,150 @@
 <div class="container">
-    <div class="d-flex justify-content-between">
-    <h2> <i class="bi bi-code-square" ></i> Proyectos</h2>
-     <button *ngIf="isAdmin" (click)="open(content)" class="btn btn-light"><i class="bi bi-plus-square"></i></button>
-    </div>
-    <br>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div *ngFor="let proyecto of proyecto">  
-
-      
-        <div class="card ">
-          <div class="col">
-        <img src="{{proyecto.img}}" class="card-img-top" alt="...">
-        <div class="card-body">
-            
-              <div class="col">
-                <button *ngIf="isAdmin" (click)="openEdit(contentEdit,proyecto)" class="btn btn-light"><i class="bi bi-pencil"></i></button>
-                <button *ngIf="isAdmin" (click)="openDelete(contentDelete,proyecto)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-              </div>
-              <div class="col">
-                <h5 class="card-title">{{proyecto.titulo}}</h5>
-               </div>
-            <p class="card-text">{{proyecto.descripcion}} </p>
-            
-          <button class="btn btn-primary"><a href="{{proyecto.link}}" style="color:white;">Enlace</a></button>
-        </div>
-        </div>  
-      </div>
-      </div>
-    </div>  
+  <div class="d-flex justify-content-between">
+    <h2 style="font-weight: bolder ;"> <i class="bi bi-code-square"></i> Proyectos</h2>
+    <button *ngIf="isAdmin" (click)="open(content)" class="btn btn-outline-dark"><i class="bi bi-plus-square"></i></button>
   </div>
-  
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let proyecto of proyecto">
+
+
+      <div class="card ">
+        <div class="col">
+          <img src="{{proyecto.img}}" class="card-img-top" alt="...">
+          <div class="card-body">
+
+            <div class="col d-flex justify-content-between">
+              <button *ngIf="isAdmin" (click)="openEdit(contentEdit,proyecto)" class="btn btn-outline-primary"><i
+                  class="bi bi-pencil"></i></button>
+
+              <button *ngIf="isAdmin" (click)="openDelete(contentDelete,proyecto)" class="btn btn-outline-danger"><i
+                  class="bi bi-trash"></i></button>
+            </div>
+            <div class="col">
+              <h5 style="font-weight: bolder;" class="card-title">{{proyecto.titulo}}</h5>
+            </div>
+            <p class="card-text">{{proyecto.descripcion}} </p>
+
+            <button class="btn btn-primary"><a href="{{proyecto.link}}" style="color:white;">Vamos !</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal Agregar Proyecto -->
-  <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Agregar Proyecto</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-    </div>
-    <div class="modal-body">
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar Proyecto</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
 
-      <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-        
-        <div class="form-group">
-          <label>Titulo:</label>
-          <div class="input-group">
-            <input class="form-control" 
-            name="titulo" 
-            #titulo="ngModel" 
-            ngModel required>
-          </div>
-        </div>
-       
-        <div class="form-group">
-          <label for="descripcion">Descripcion:</label>
-          <div class="input-group">
-            <input id="descripcion" name="descripcion" class="form-control" ngModel>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="link">Link:</label>
-          <div class="input-group">
-            <input id="link" name="link" class="form-control" ngModel>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="img">Imagen:</label>
-          <div class="input-group">
-            <input type="file" 
-            alife-file-to-base64 (onFileChanged)="obtener($event)" 
-            id="img" 
-            name="img" 
-            class="form-control" 
-            ngModel>
-            <img src="{{base64}}" height="100px"> 
-          </div>
-        </div>
-        <br>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
+      <div class="form-group">
+        <label>Titulo:</label>
+        <div class="input-group">
+          <input class="form-control" name="titulo" #titulo="ngModel" ngModel required>
         </div>
-      </form>
-    </div>
-  </ng-template>
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">Descripcion:</label>
+        <div class="input-group">
+          <input id="descripcion" name="descripcion" class="form-control" ngModel>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="link">Link:</label>
+        <div class="input-group">
+          <input id="link" name="link" class="form-control" ngModel>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="img">Imagen:</label>
+        <div class="input-group">
+          <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" id="img" name="img"
+            class="form-control" ngModel>
+          <img src="{{base64}}" height="100px">
+        </div>
+      </div>
+      <br>
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
 
 <!-- Modal Editar Proyecto -->
-  <ng-template #contentEdit let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title2">Editar Educacion</h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <!-- <span aria-hidden="true">&times;</span> -->
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="editForm" novalidate>
-        <!-- <div class="form-group">
+<ng-template #contentEdit let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Editar Educacion</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="editForm" novalidate>
+      <!-- <div class="form-group">
           <label>Id</label>
           <div class="input-group">
             <input formControlName="id" class="form-control">
           </div>
         </div> -->
-        <div class="form-group">
-          <label for="titulo">Titulo:</label>
-          <div class="input-group">
-            <input formControlName="titulo" class="form-control">
-          </div>
+      <div class="form-group">
+        <label for="titulo">Titulo:</label>
+        <div class="input-group">
+          <input formControlName="titulo" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="descripcion">Descripcion:</label>
-          <div class="input-group">
-            <input formControlName="descripcion" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="link">Link:</label>
-          <div class="input-group">
-            <input formControlName="link" class="form-control">
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <label for="img">Imagen:</label>
-          <div class="input-group">
-            <input type="file"
-             alife-file-to-base64 (onFileChanged)="obtener($event)"
-             formControlName="img" 
-             class="form-control">
-            <img src="{{this.editForm.value.img}}" height="100px"> 
-          </div>
-        </div>
-      </form>
-
-
-      <div class="modal-footer">
-        <button data-dismiss="modal" class="btn btn-primary" (click)="onSave()">Actualizar</button>
-        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cerrar</button>
       </div>
-    </div>
-  </ng-template>
+      <div class="form-group">
+        <label for="descripcion">Descripcion:</label>
+        <div class="input-group">
+          <input formControlName="descripcion" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="link">Link:</label>
+        <div class="input-group">
+          <input formControlName="link" class="form-control">
+        </div>
+      </div>
 
-<!-- Modal Eliminar Proyecto -->    
-    <ng-template #contentDelete let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">Eliminar Proyecto</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <h3>Esta seguro de eliminar este registro?</h3>
-    </div>
+      <div class="form-group">
+        <label for="img">Imagen:</label>
+        <div class="input-group">
+          <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" formControlName="img"
+            class="form-control">
+          <img src="{{this.editForm.value.img}}" height="100px">
+        </div>
+      </div>
+    </form>
+
+
     <div class="modal-footer">
-      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Eliminar</button>
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+      <button data-dismiss="modal" class="btn btn-primary" (click)="onSave()">Actualizar</button>
+      <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cerrar</button>
     </div>
-  </ng-template>
-    
-    
-    
+  </div>
+</ng-template>
+
+<!-- Modal Eliminar Proyecto -->
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Eliminar Proyecto</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <h3>Esta seguro de eliminar este registro?</h3>
+  </div>
+  <div class="modal-footer">
+    <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Eliminar</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+  </div>
+</ng-template>

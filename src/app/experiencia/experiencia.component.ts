@@ -60,7 +60,7 @@ export class ExperienciaComponent implements OnInit {
 
   obtener(e:any): void {     
     this.base64 = e[0].base64; 
-    this.editForm.value.img=this.base64;  
+    this.editForm.value.imagen=this.base64;  
   }
 
   // obtener(e: any) {     

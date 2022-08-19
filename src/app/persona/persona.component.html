@@ -23,7 +23,7 @@
               <!-- <div class="edit-profile d-flex justify-content-center"></div> -->
                   
               <div class="main-text align-text-center">
-                  <h4>{{persona.nombre}} {{persona.apellido}}</h4>
+                  <h4 style="font-weight: bolder;">{{persona.nombre}} {{persona.apellido}}</h4>
                   <h5>{{persona.titulo}}</h5>
               </div>
       </div>
@@ -31,17 +31,17 @@
       <div class="col-md-8">
     <div class="row align-items-start">
           <div  class="col">
-            <h2 > <i class="bi bi-person" ></i>Sobre Mi  </h2>  
+            <h2 style="font-weight:bolder ;" > <i class="bi bi-person" ></i>Sobre Mi  </h2>  
           </div>
         
           <div class="col">
             <div class="d-flex justify-content-end">
-              <button *ngIf="isAdmin" (click)="openEdit(contentEdit,persona)" class="btn btn-light"><i class="bi bi-pencil"></i></button>   
+              <button *ngIf="isAdmin" (click)="openEdit(contentEdit,persona)" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>   
           </div>
           </div>
   
-          <div class=" aling-text-left">
-          <p >{{persona.acercaDe}}</p>
+          <div>
+          <p style="text-align: justify;" >{{persona.acercaDe}}</p>
          </div>
         </div>
       </div>

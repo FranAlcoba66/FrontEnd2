@@ -1,7 +1,7 @@
   <div class="container">
     <div class="col-12 d-flex justify-content-between">
-      <h2><i class="bi bi-wrench-adjustable-circle"></i> Habilidades</h2>
-      <button *ngIf="isAdmin" class="btn btn-light" (click)="open(content)"><i class="bi bi-plus-square"></i></button>
+      <h2 style="font-weight: bolder ;"><i class="bi bi-wrench-adjustable-circle"></i> Habilidades</h2>
+      <button *ngIf="isAdmin" class="btn btn-outline-dark" (click)="open(content)"><i class="bi bi-plus-square"></i></button>
     </div>
     <br>
       
@@ -14,17 +14,17 @@
                   <h5>{{habilidad.nombre}}</h5> 
               </div>
               <div class="d-flex justify-content-end">
-                  <button *ngIf="isAdmin" class="btn btn-light" (click)="openEdit(contentEdit,habilidad)"><i class="bi bi-pencil"></i></button>
-                  <button *ngIf="isAdmin" class="btn btn-light" (click)="openDelete(contentDelete,habilidad)"> <i class="bi bi-trash"></i> </button>
+                  <button *ngIf="isAdmin" class="btn btn-outline-primary" (click)="openEdit(contentEdit,habilidad)"><i class="bi bi-pencil"></i></button>
+                  <button *ngIf="isAdmin" class="btn btn-outline-danger" (click)="openDelete(contentDelete,habilidad)"> <i class="bi bi-trash"></i> </button>
               </div>       
           </div>         
         <div >
           <div>
             <ngb-progressbar 
-                type="primary"
+                type="success"
                 [max]="100"
                 [value]="habilidad.porcentaje"
-                [striped]="true"
+                [striped]="false"
                 [animated]="true" >
                 <i>{{habilidad.porcentaje }}%</i> 
                 
@@ -35,6 +35,8 @@
     
     </div>
   </div>
+
+<!-- Modal Agregar Habilidad -->
   <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Agregar habilidad</h4>
@@ -82,12 +84,11 @@
     </div>
   </ng-template>
 
-
+<!-- Modal Editar Habilidad -->
   <ng-template #contentEdit let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title2">Editar habilidad</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <!-- <span aria-hidden="true">&times;</span> -->
       </button>
     </div>
     <div class="modal-body">
@@ -138,7 +139,7 @@
   </ng-template>
 
 
-
+ <!-- Modal Eliminar Habilidad -->
   <ng-template #contentDelete let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Eliminar Habilidad</h4>

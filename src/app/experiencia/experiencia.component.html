@@ -2,8 +2,8 @@
     <div class="row">
       
       <div class="col-12 d-flex justify-content-between">
-        <h2><i class="bi bi-search"></i> Experiencia</h2>
-        <button *ngIf="isAdmin" class="btn btn-light" (click)="open(content)">
+        <h2 style="font-weight:bolder ;"><i class="bi bi-search"></i> Experiencia</h2>
+        <button *ngIf="isAdmin" class="btn btn-outline-dark"(click)="open(content)">
           <i class="bi bi-plus-square"></i></button>
           
       </div>
@@ -19,16 +19,16 @@
   
           <div class="col-md-9">
             <div class="col-12 d-flex justify-content-start">
-              <div class="col-10 d-flex justify-content-start"><h5>{{experiencia.empresa}}</h5></div>
+              <div  class="col-10 d-flex justify-content-start"><h5 style="font-weight:bolder ;">{{experiencia.empresa}}</h5></div>
               <div class="col-2 d-flex justify-content-start"> 
-                <button *ngIf="isAdmin" class="btn btn-primary" (click)="openEdit(contentEdit, experiencia)" ><i class="bi bi-pencil"></i></button>
+                <button *ngIf="isAdmin" class="btn btn-outline-primary" (click)="openEdit(contentEdit, experiencia)" ><i class="bi bi-pencil"></i></button>
               
-                <button *ngIf="isAdmin" class="btn btn-danger"(click)="openDelete(contentDelete, experiencia)"><i class="bi bi-trash"></i></button>
+                <button *ngIf="isAdmin" class="btn btn-outline-danger"(click)="openDelete(contentDelete, experiencia)"><i class="bi bi-trash"></i></button>
   
               </div>
             </div>
             <div class="col-md-12 d-flex justify-content-start">
-            <h5>{{experiencia.puesto}}</h5>
+            <h5 style="font-style: italic;">{{experiencia.puesto}}</h5>
             </div>
             <div class="col-md-12 d-flex justify-content-start">
             <h5>{{experiencia.fechaIni}}--{{experiencia.fechaFin}}</h5>
@@ -42,7 +42,7 @@
    
   
   
-  
+   <!-- Modal Agregar Educacion -->
     <ng-template #content let-c="close" let-d="dismiss">
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Agregar Experiencia</h4>
@@ -66,13 +66,13 @@
           <div class="form-group">
             <label for="fechaIni">Fecha de Inicio</label>
             <div class="input-group">
-              <input id="fechaIni" name="fechaIni" class="form-control" ngModel>
+              <input type="date" id="fechaIni" name="fechaIni" class="form-control" ngModel>
             </div>
           </div>
           <div class="form-group">
             <label for="fechaFin">Fecha de Finalizacion</label>
             <div class="input-group">
-              <input id="fechaFin" name="fechaFin" class="form-control" ngModel>
+              <input type="date" id="fechaFin" name="fechaFin" class="form-control" ngModel>
             </div>
           </div>
           <div class="form-group">
@@ -95,22 +95,15 @@
         </form>
       </div>
     </ng-template>
-  
+   <!-- Modal Editar Educacion -->
     <ng-template #contentEdit let-modal>
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title2">Editar Experiencia</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <!-- <span aria-hidden="true">&times;</span> -->
         </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="editForm" novalidate>
-          <!-- <div class="form-group">
-            <label>Id</label>
-            <div class="input-group">
-              <input formControlName="id" class="form-control">
-            </div>
-          </div> -->
           <div class="form-group">
             <label for="puesto">Puesto:</label>
             <div class="input-group">
@@ -126,13 +119,13 @@
           <div class="form-group">
             <label for="fechaIni">Fecha de Inicio:</label>
             <div class="input-group">
-              <input formControlName="fechaIni" class="form-control">
+              <input type="date" formControlName="fechaIni" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label for="fechaFin">Fecha de Finalizacion:</label>
             <div class="input-group">
-              <input formControlName="fechaFin" class="form-control">
+              <input type="date" formControlName="fechaFin" class="form-control">
             </div>
           </div>
           <div class="form-group">
@@ -155,7 +148,7 @@
       </div>
     </ng-template>
   
-  
+   <!-- Modal Eliminar Educacion -->
     <ng-template #contentDelete let-modal>
       <div class="modal-header">
         <h4 class="modal-title">Eliminar Experiencia</h4>
