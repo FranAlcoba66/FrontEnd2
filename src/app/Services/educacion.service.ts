@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class EducacionService {
 
-  URL = 'http://localhost:8080/educacion/';
+  URL = 'https://backendportfolioap.herokuapp.com/educacion/';
+  // URL = 'http://localhost:8080/educacion/';
 
   // private _refresh$= new Subject<void>();
   

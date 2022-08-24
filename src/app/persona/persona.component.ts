@@ -13,7 +13,7 @@ import { TokenService } from '../Services/token.service';
 })
 export class PersonaComponent implements OnInit {
 
-  persona: Persona =new Persona();
+  persona: Persona[];
   closeResult: string;
   editForm: FormGroup;
   private deleteId: number;

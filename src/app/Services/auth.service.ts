@@ -11,8 +11,9 @@ import { NuevoUsuario } from '../Models/nuevo-usuario';
 export class AuthService {
 
   
+  authURL = 'https://backendportfolioap.herokuapp.com/auth/';
 
-  authURL = 'http://localhost:8080/auth/';
+  // authURL = 'http://localhost:8080/auth/';
 
   constructor(private httpClient: HttpClient) { }
 

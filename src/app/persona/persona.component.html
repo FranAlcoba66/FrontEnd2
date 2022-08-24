@@ -1,44 +1,46 @@
 <!-- BANNER -->
+<div *ngFor="let persona of persona">
 <div class="container">
-  <div class="row">
+
+    <div class="row">
       <div class="col-md-12">
           <div class="col">
             <img class="img1 img-fluid" src="{{persona.banner}}" alt="">
-
-              <div class="edit-profile d-flex justify-content-center"></div> 
+            
+            <div class="edit-profile d-flex justify-content-center"></div> 
           </div>
+        </div>
       </div>
-  </div>
- 
-</div>  
-
-<!-- PERSONA -->
-<div class="container">
-  
-  <div class="row">
-  <div class="col-md-4">
-    <img class="img2" src="{{persona.img}}" alt="">
-
-             
-              <!-- <div class="edit-profile d-flex justify-content-center"></div> -->
-                  
-              <div class="main-text align-text-center">
-                  <h4 style="font-weight: bolder;">{{persona.nombre}} {{persona.apellido}}</h4>
-                  <h5>{{persona.titulo}}</h5>
-              </div>
-      </div>
-  
-      <div class="col-md-8">
-    <div class="row align-items-start">
-          <div  class="col">
-            <h2 style="font-weight:bolder ;" > <i class="bi bi-person" ></i>Sobre Mi  </h2>  
+      
+    </div>
+    
+    <!-- PERSONA -->
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md-4">
+          <img class="img2" src="{{persona.img}}" alt="">
+          
+          
+          <!-- <div class="edit-profile d-flex justify-content-center"></div> -->
+          
+          <div class="main-text align-text-center">
+            <h4 style="font-weight: bolder;">{{persona.nombre}} {{persona.apellido}}</h4>
+            <h5>{{persona.titulo}}</h5>
           </div>
+        </div>
         
-          <div class="col">
-            <div class="d-flex justify-content-end">
-              <button *ngIf="isAdmin" (click)="openEdit(contentEdit,persona)" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>   
-          </div>
-          </div>
+        <div class="col-md-8">
+          <div class="row align-items-start">
+            <div  class="col">
+              <h2 style="font-weight:bolder ;" > <i class="bi bi-person" ></i>Sobre Mi  </h2>  
+            </div>
+            
+            <div class="col">
+              <div class="d-flex justify-content-end">
+                <button *ngIf="isAdmin" (click)="openEdit(contentEdit,persona)" class="btn btn-outline-dark"><i class="bi bi-pencil"></i></button>   
+              </div>
+            </div>
   
           <div>
           <p style="text-align: justify;" >{{persona.acercaDe}}</p>
@@ -47,6 +49,7 @@
       </div>
       </div>
   </div>
+    </div>  
 
   <ng-template #contentEdit let-modal>
     <div class="modal-header">
