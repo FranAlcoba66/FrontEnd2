@@ -98,7 +98,7 @@
           <div class="input-group">
             <input type="file"
              alife-file-to-base64 (onFileChanged)="obtener($event)"
-             formControlName="img" 
+             name="img"
              class="form-control">
           <img src="{{this.editForm.value.img}}" height="100px"> 
           </div>
@@ -109,7 +109,7 @@
           <div class="input-group">
             <input type="file"
              alife-file-to-base64 (onFileChanged)="obtener2($event)"
-             formControlName="banner" 
+             name="banner"
              class="form-control">
             <img src="{{this.editForm.value.banner}}" height="100px"> 
           </div>

@@ -118,36 +118,37 @@
         <div class="form-group">
           <label for="nombre">Nombre</label>
           <div class="input-group">
-            <input formControlName="nombre" class="form-control">
+            <input  name="nombre"   formControlName="nombre" class="form-control">
           </div>
         </div>
 
         <div class="form-group">
           <label for="institucion">Institucion</label>
           <div class="input-group">
-            <input formControlName="institucion" class="form-control">
+            <input   name="institucion" formControlName="institucion" class="form-control">
           </div>
         </div>
 
         <div class="form-group">
           <label for="fechaIni">Fecha de Inicio</label>
           <div class="input-group">
-            <input type="date" formControlName="fechaIni" class="form-control">
+            <input type="date" name="fechaIni"  formControlName="fechaIni" class="form-control">
           </div>
         </div>
 
         <div class="form-group">
           <label for="fechaFin">Fecha de Finalizacion</label>
           <div class="input-group">
-            <input type="date" formControlName="fechaFin" class="form-control">
+            <input type="date"  name="fechaFin"  formControlName="fechaFin" class="form-control">
           </div>
         </div>
 
         <div class="form-group">
           <label for="imagen">Imagen</label>
           <div class="input-group">
-            <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" formControlName="imagen"
-              class="form-control">
+            <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" 
+            name="imagen"  
+            class="form-control">
             <img src="{{this.editForm.value.imagen}}" height="100px">
           </div>
         </div>
@@ -167,8 +168,7 @@
   <ng-template #contentDelete let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Eliminar Educacion</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+      <button  class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       </button>
     </div>
     <div class="modal-body">

@@ -126,7 +126,7 @@
           <div class="input-group">
             <input type="file" 
             alife-file-to-base64 (onFileChanged)="obtener($event)" 
-            formControlName="logo" 
+            name="logo" 
             class="form-control">
             <img src="{{this.editForm.value.logo}}" height="100px"> 
           </div>
@@ -147,8 +147,7 @@
   <ng-template #contentDelete let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Eliminar Habilidad</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
+      <button class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       </button>
     </div>
     <div class="modal-body">

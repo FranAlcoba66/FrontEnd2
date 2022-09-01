@@ -106,12 +106,6 @@ export class ProyectosComponent implements OnInit {
   onSave() {
     this.proyectoService.updateProyecto(this.editForm.value)
       .subscribe((results) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Excelente',
-          text: 'Educacion ingresada!',
-          timer:1500 ,
-        })
         this.ngOnInit();
         this.modalService.dismissAll();
       }); 

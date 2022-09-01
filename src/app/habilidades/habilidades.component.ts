@@ -81,7 +81,7 @@ export class HabilidadesComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     f.form.value.logo=this.base64;
-    console.log(f.form.value);
+   // console.log(f.form.value);
     this.HabilidadService.addHabilidad(f.value)
       .subscribe((result) => {
         Swal.fire({
@@ -108,7 +108,6 @@ export class HabilidadesComponent implements OnInit {
       porcentaje: habilidad.porcentaje,
       logo: habilidad.logo,
     });
-    console.log(this.editForm.value);
    }
 
 
