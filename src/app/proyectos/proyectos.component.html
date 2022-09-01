@@ -48,32 +48,38 @@
         <div class="input-group">
           <input class="form-control" name="titulo" #titulo="ngModel" ngModel required>
         </div>
+        <span *ngIf="titulo.invalid && titulo.touched" class="error">Ingrese Titulo</span>
       </div>
 
       <div class="form-group">
         <label for="descripcion">Descripcion:</label>
         <div class="input-group">
-          <input id="descripcion" name="descripcion" class="form-control" ngModel>
+          <input id="descripcion" name="descripcion" class="form-control" #descripcion="ngModel" ngModel required>
         </div>
+        <span *ngIf="descripcion.invalid && descripcion.touched" class="error">Ingrese Descripcion</span>
       </div>
+
       <div class="form-group">
         <label for="link">Link:</label>
         <div class="input-group">
-          <input id="link" name="link" class="form-control" ngModel>
+          <input id="link" name="link" class="form-control" #link="ngModel" ngModel required>
         </div>
+        <span *ngIf="link.invalid && link.touched" class="error">Ingrese Link</span>
       </div>
+
       <div class="form-group">
         <label for="img">Imagen:</label>
         <div class="input-group">
           <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" id="img" name="img"
-            class="form-control" ngModel>
+            class="form-control"  #img="ngModel" ngModel required>
           <img src="{{base64}}" height="100px">
         </div>
+        <span *ngIf="link.invalid && link.touched" class="error">Ingrese Imagen</span>
       </div>
       <br>
 
       <div class="modal-footer">
-        <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
+        <button type="submit"  [disabled]="f.invalid" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
       </div>
     </form>
   </div>

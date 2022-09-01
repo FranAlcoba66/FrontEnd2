@@ -5,7 +5,7 @@ import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-
 import { Proyecto } from '../Models/proyecto';
 import { ProyectoService } from '../Services/proyecto.service';
 import { TokenService } from '../Services/token.service';
-
+import  Swal from  'sweetalert2' ;
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
@@ -73,6 +73,12 @@ export class ProyectosComponent implements OnInit {
     console.log(f.form.value);
     this.proyectoService.addProyecto(f.value)
       .subscribe((result) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Proyecto ingresado!',
+          timer:2000 ,
+        })
         this.ngOnInit(); // reload the table
       });
       f.form.value.img=this.base64='';
@@ -100,9 +106,15 @@ export class ProyectosComponent implements OnInit {
   onSave() {
     this.proyectoService.updateProyecto(this.editForm.value)
       .subscribe((results) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Educacion ingresada!',
+          timer:1500 ,
+        })
         this.ngOnInit();
         this.modalService.dismissAll();
-      });
+      }); 
   }
 
   openDelete(targetModal, proyecto:Proyecto) {

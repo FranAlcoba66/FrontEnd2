@@ -50,6 +50,7 @@
           <div class="input-group">
             <input class="form-control" name="nombre" #nombre="ngModel" ngModel required>
           </div>
+          <span *ngIf="nombre.invalid && nombre.touched" class="error">Ingrese Porcentaje</span>
         </div>
         <div class="form-group">
           <label for="porcentaje">Porcentaje</label>
@@ -59,7 +60,8 @@
             class="form-range" 
             id="porcentaje" 
             name="porcentaje"  
-            ngModel>
+            #porcentaje="ngModel"
+            ngModel required>
           </div>
         </div>
         <div class="form-group">
@@ -71,14 +73,16 @@
             id="logo" 
             name="logo" 
             class="form-control" 
-            ngModel>
+            #logo="ngModel"
+            ngModel required>
             <img src="{{base64}}" height="100px"> 
           </div>
+          <span *ngIf="logo.invalid && logo.touched" class="error">Ingrese Logo</span>
         </div>
         <br>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
+          <button type="submit"  [disabled]="f.invalid" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
         </div>
       </form>
     </div>

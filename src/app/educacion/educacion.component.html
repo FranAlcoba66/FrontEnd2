@@ -1,175 +1,181 @@
 <div class="container">
-    <div class="row">
-      
-      <div  class="col-12 d-flex justify-content-between">
-        <h2 style="font-weight:bolder ;"><i class="bi bi-book"></i> Educacion  </h2>
-        <button *ngIf="isAdmin" class="btn btn-outline-dark" (click)="open(content)">
-          <i class="bi bi-plus-square"></i></button>
-          
-      </div>
-    
-  
-  
-  <div *ngFor="let educacion of educacion">
-    <br>
+  <div class="row">
+
+    <div class="col-12 d-flex justify-content-between">
+      <h2 style="font-weight:bolder ;"><i class="bi bi-book"></i> Educacion </h2>
+      <button *ngIf="isAdmin" class="btn btn-outline-dark" (click)="open(content)">
+        <i class="bi bi-plus-square"></i></button>
+
+    </div>
+
+
+
+    <div *ngFor="let educacion of educacion">
+      <br>
       <div class="row">
-          <div class="col-3">
-            <img class="img img-fluid" src="{{educacion.imagen}}" alt="">
+        <div class="col-3">
+          <img class="img img-fluid" src="{{educacion.imagen}}" alt="">
+        </div>
+
+        <div class="col-md-9">
+          <div class="col-12 d-flex justify-content-start">
+            <div class="col-10 d-flex justify-content-start">
+              <h5 style="font-weight:bolder;">{{educacion.nombre}}</h5>
+            </div>
+            <div class="col-2 d-flex justify-content-start">
+              <button *ngIf="isAdmin" class="btn btn-outline-primary" (click)="openEdit(contentEdit, educacion)"><i
+                  class="bi bi-pencil"></i></button>
+
+              <button *ngIf="isAdmin" class="btn btn-outline-danger" (click)="openDelete(contentDelete, educacion)"><i
+                  class="bi bi-trash"></i></button>
+
+            </div>
           </div>
-  
-          <div class="col-md-9">
-            <div class="col-12 d-flex justify-content-start">
-              <div class="col-10 d-flex justify-content-start"><h5 style="font-weight:bolder;">{{educacion.nombre}}</h5></div>
-              <div class="col-2 d-flex justify-content-start"> 
-                <button *ngIf="isAdmin" class="btn btn-outline-primary" (click)="openEdit(contentEdit, educacion)" ><i class="bi bi-pencil"></i></button>
-              
-                <button *ngIf="isAdmin" class="btn btn-outline-danger"(click)="openDelete(contentDelete, educacion)"><i class="bi bi-trash"></i></button>
-  
-              </div>
-            </div>
-            <div class="col-md-12 d-flex justify-content-start">
+          <div class="col-md-12 d-flex justify-content-start">
             <h5 style="font-style:italic;">{{educacion.institucion}}</h5>
-            </div>
-            <div class="col-md-12 d-flex justify-content-start">
-            <h5>{{educacion.fechaIni}}  -  {{educacion.fechaFin}}</h5>
-            </div>
-            <br>
-         </div>
+          </div>
+          <div class="col-md-12 d-flex justify-content-start">
+            <h5>{{educacion.fechaIni}} - {{educacion.fechaFin}}</h5>
+          </div>
+          <br>
         </div>
       </div>
     </div>
-  
-   
-  
-  
+  </div>
+
+
+
+
   <!-- Modal Agregar Educacion -->
-    <ng-template #content let-c="close" let-d="dismiss">
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Agregar Educacion</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-      </div>
-      <div class="modal-body">
-  
-        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-          <div class="form-group">
-            <label>Nombre</label>
-            <div class="input-group">
-              <input class="form-control" name="nombre" #nombre="ngModel" ngModel required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="institucion">Institucion</label>
-            <div class="input-group">
-              <input id="institucion" name="institucion" class="form-control" ngModel />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="fechaIni">Fecha de Inicio</label>
-            <div class="input-group">
-              <input type="date" id="fechaIni" name="fechaIni" class="form-control" ngModel>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="fechaFin">Fecha de Finalizacion</label>
-            <div class="input-group">
-              <input type="date" id="fechaFin" name="fechaFin" class="form-control" ngModel>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="imagen">imagen</label>
-            <div class="input-group">
-              <input type="file" 
-              alife-file-to-base64 (onFileChanged)="obtener($event)" 
-              id="imagen" 
-              name="imagen" 
-              class="form-control" 
-              ngModel>
-              <img src="{{base64}}" height="100px"> 
-            </div>
-          </div>
-          <br>
-  
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
-          </div>
-        </form>
-      </div>
-    </ng-template>
+  <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h3>{{message}}</h3>
+      <h4 class="modal-title" id="modal-basic-title">Agregar Educacion</h4>
+      <button class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
 
-   <!-- Modal Editar Educacion -->
-    <ng-template #contentEdit let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title2">Editar Educacion</h4>
-        <button type="button" class="btn btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <!-- <span aria-hidden="true">&times;</span> -->
-        </button>
-      </div>
-      <div class="modal-body">
-        <form [formGroup]="editForm" novalidate>
-          <!-- <div class="form-group">
-            <label>Id</label>
-            <div class="input-group">
-              <input formControlName="id" class="form-control">
-            </div>
-          </div> -->
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <div class="input-group">
-              <input   formControlName="nombre" class="form-control">
-            </div>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label>Nombre</label>
+          <div class="input-group">
+            <input class="form-control" name="nombre" #nombre="ngModel" ngModel required>
           </div>
-          <div class="form-group">
-            <label for="institucion">Institucion</label>
-            <div class="input-group">
-              <input formControlName="institucion" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="fechaIni">Fecha de Inicio</label>
-            <div class="input-group">
-              <input type="date" formControlName="fechaIni" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="fechaFin">Fecha de Finalizacion</label>
-            <div class="input-group">
-              <input type="date" formControlName="fechaFin" class="form-control">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="imagen">Imagen</label>
-            <div class="input-group">
-              <input type="file"
-               alife-file-to-base64 (onFileChanged)="obtener($event)"
-               formControlName="imagen" 
-               class="form-control">
-              <img src="{{this.editForm.value.imagen}}" height="100px"> 
-            </div>
-          </div>
-        </form>
-  
-  
-        <div class="modal-footer">
-          <button data-dismiss="modal" class="btn btn-primary" (click)="onSave()">Actualizar</button>
-          <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cerrar</button>
+          <span *ngIf="nombre.invalid && nombre.touched" class="error">Ingrese Nombre</span>
         </div>
-      </div>
-    </ng-template>
+        <div class="form-group">
+          <label for="institucion">Institucion</label>
+          <div class="input-group">
+            <input id="institucion" name="institucion" class="form-control" #institucion="ngModel" ngModel required />
+          </div>
+          <span *ngIf="institucion.invalid && institucion.touched" class="error">Ingrese Institucion</span>
+        </div>
+        <div class="form-group">
+          <label for="fechaIni">Fecha de Inicio</label>
+          <div class="input-group">
+            <input type="date" id="fechaIni" name="fechaIni" class="form-control" #fechaIni="ngModel" ngModel required>
+          </div>
+          <span *ngIf="fechaIni.invalid && fechaIni.touched" class="error">Ingrese Fecha </span>
+        </div>
+        <div class="form-group">
+          <label for="fechaFin">Fecha de Finalizacion</label>
+          <div class="input-group">
+            <input type="date" id="fechaFin" name="fechaFin" class="form-control" #fechaFin="ngModel" ngModel required>
+          </div>
+          <span *ngIf="fechaFin.invalid && fechaFin.touched" class="error">Ingrese Fecha </span>
+        </div>
 
-   <!-- Modal Eliminar Educacion -->
-    <ng-template #contentDelete let-modal>
-      <div class="modal-header">
-        <h4 class="modal-title">Eliminar Educacion</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h3>Esta seguro de eliminar este registro?</h3>
-      </div>
+        <div class="form-group">
+          <label for="imagen">imagen</label>
+          <div class="input-group">
+            <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" id="imagen" name="imagen"
+              class="form-control" #imagen="ngModel" ngModel required>
+            <img src="{{base64}}" height="100px">
+          </div>
+          <span *ngIf="imagen.invalid && imagen.touched" class="error">Seleccione Imagen </span>
+        </div>
+        <br>
+
+        <div class="modal-footer">
+          <button type="submit" [disabled]="f.invalid" class="btn btn-outline-dark"
+            (click)="c('Save click')">Agregar</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <!-- Modal Editar Educacion -->
+  <ng-template #contentEdit let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title2">Editar Educacion</h4>
+      <button type="button" class="btn btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <!-- <span aria-hidden="true">&times;</span> -->
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <form [formGroup]="editForm" novalidate>
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <div class="input-group">
+            <input formControlName="nombre" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="institucion">Institucion</label>
+          <div class="input-group">
+            <input formControlName="institucion" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fechaIni">Fecha de Inicio</label>
+          <div class="input-group">
+            <input type="date" formControlName="fechaIni" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fechaFin">Fecha de Finalizacion</label>
+          <div class="input-group">
+            <input type="date" formControlName="fechaFin" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="imagen">Imagen</label>
+          <div class="input-group">
+            <input type="file" alife-file-to-base64 (onFileChanged)="obtener($event)" formControlName="imagen"
+              class="form-control">
+            <img src="{{this.editForm.value.imagen}}" height="100px">
+          </div>
+        </div>
+
+
+      </form>
+
+
       <div class="modal-footer">
-        <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Eliminar</button>
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+        <button data-dismiss="modal" class="btn btn-primary" (click)="onSave()">Actualizar</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Cerrar</button>
       </div>
-    </ng-template>
+    </div>
+  </ng-template>
 
+  <!-- Modal Eliminar Educacion -->
+  <ng-template #contentDelete let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Eliminar Educacion</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h3>Esta seguro de eliminar este registro?</h3>
+    </div>
+    <div class="modal-footer">
+      <button data-dismiss="modal" class="btn btn-danger" (click)="onDelete()">Eliminar</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Cerrar</button>
+    </div>
+  </ng-template>

@@ -8,9 +8,9 @@ import { Proyecto } from '../Models/proyecto';
 })
 export class ProyectoService {
   
-  URL = 'https://backendportfolioap.herokuapp.com/proyecto/';
+ // URL = 'https://backendportfolioap.herokuapp.com/proyecto/';
   
-  // URL = 'http://localhost:8080/proyecto/';
+   URL = 'http://localhost:8080/proyecto/';
 
 
 

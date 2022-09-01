@@ -5,6 +5,7 @@ import { NgbModalConfig, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-
 import { Educacion } from '../Models/educacion.model';
 import { EducacionService } from '../Services/educacion.service';
 import { TokenService } from '../Services/token.service';
+import  Swal from  'sweetalert2' ;
 
 @Component({
   selector: 'app-educacion',
@@ -19,6 +20,7 @@ export class EducacionComponent implements OnInit {
   editForm: FormGroup;
   private deleteId: number;
   base64:String;
+  message:String;
 
   isAdmin = false;
   roles: string[];
@@ -76,15 +78,42 @@ export class EducacionComponent implements OnInit {
   }
   
   onSubmit(f: NgForm) {
-    f.form.value.imagen=this.base64;
-    console.log(f.form.value);
-    this.educacionService.addEducacion(f.value)
+    if (f.valid) {
+      // this.message = 'The form is VALID'; 
+      f.form.value.imagen=this.base64;
+      console.log(f.form.value);
+      this.educacionService.addEducacion(f.value)
       .subscribe((result) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Educacion ingresada!',
+          timer:2000 ,
+        })
         this.ngOnInit(); // reload the table
       });
      f.form.value.imagen=this.base64='';
-    this.modalService.dismissAll(); // dismiss the modal
-  }
+    this.modalService.dismissAll(); // dismiss the modal  
+
+    }
+
+
+    if (f.invalid){
+      // alert("formulario incompleto")
+    }
+   }
+
+
+  // onSubmit(f: NgForm) {
+  //   f.form.value.imagen=this.base64;
+  //   console.log(f.form.value);
+  //   this.educacionService.addEducacion(f.value)
+  //     .subscribe((result) => {
+  //       this.ngOnInit(); // reload the table
+  //     });
+  //    f.form.value.imagen=this.base64='';
+  //   this.modalService.dismissAll(); // dismiss the modal
+  // }
 
   openEdit(targetModal, educacion:Educacion) {
     this.modalService.open(targetModal, {

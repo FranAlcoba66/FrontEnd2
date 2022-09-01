@@ -5,6 +5,7 @@ import { NgbModalConfig, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-
 import { Experiencia } from '../Models/experiencia';
 import { ExprienciaService } from '../Services/expriencia.service';
 import { TokenService } from '../Services/token.service';
+import  Swal from  'sweetalert2' ;
 
 @Component({
   selector: 'app-experiencia',
@@ -77,14 +78,25 @@ export class ExperienciaComponent implements OnInit {
   }
   
   onSubmit(f: NgForm) {
+    if (f.valid){
     f.form.value.imagen=this.base64;
     console.log(f.form.value);
     this.experienciaService.addExperiencia(f.value)
       .subscribe((result) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Experiencia ingresada!',
+          timer:2000 ,
+        })
         this.ngOnInit(); // reload the table
       });
       f.form.value.imagen=this.base64='';
     this.modalService.dismissAll(); // dismiss the modal
+    }
+    if (f.invalid){
+      // alert("formulario incompleto")
+    }
   }
 
   openEdit(targetModal, experiencia:Experiencia) {

@@ -7,9 +7,9 @@ import { Experiencia } from '../Models/experiencia';
   providedIn: 'root'
 })
 export class ExprienciaService {
-  URL = 'https://backendportfolioap.herokuapp.com/experiencia/';
+  //URL = 'https://backendportfolioap.herokuapp.com/experiencia/';
   
-  // URL = 'http://localhost:8080/experiencia/';
+   URL = 'http://localhost:8080/experiencia/';
 
   constructor(private http:HttpClient) { }
 

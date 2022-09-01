@@ -56,24 +56,28 @@
             <div class="input-group">
               <input class="form-control" name="puesto" #puesto="ngModel" ngModel required>
             </div>
+            <span *ngIf="puesto.invalid && puesto.touched" class="error">Ingrese Puesto</span>
           </div>
           <div class="form-group">
             <label for="empresa">Empresa:</label>
             <div class="input-group">
-              <input id="empresa" name="empresa" class="form-control" ngModel />
+              <input id="empresa" name="empresa" class="form-control" #empresa="ngModel" ngModel required/>
             </div>
+            <span *ngIf="empresa.invalid && empresa.touched" class="error">Ingrese Empresa</span>
           </div>
           <div class="form-group">
             <label for="fechaIni">Fecha de Inicio</label>
             <div class="input-group">
-              <input type="date" id="fechaIni" name="fechaIni" class="form-control" ngModel>
+              <input type="date" id="fechaIni" name="fechaIni" class="form-control" #fechaIni="ngModel" ngModel required>
+              <span *ngIf="fechaIni.invalid && fechaIni.touched" class="error">Ingrese Fecha</span>
             </div>
           </div>
           <div class="form-group">
             <label for="fechaFin">Fecha de Finalizacion</label>
             <div class="input-group">
-              <input type="date" id="fechaFin" name="fechaFin" class="form-control" ngModel>
+              <input type="date" id="fechaFin" name="fechaFin" class="form-control" #fechaFin="ngModel" ngModel required>
             </div>
+            <span *ngIf="fechaIni.invalid && fechaIni.touched" class="error">Ingrese Fecha</span>
           </div>
           <div class="form-group">
             <label for="imagen">imagen</label>
@@ -83,14 +87,16 @@
               id="imagen" 
               name="imagen" 
               class="form-control" 
-              ngModel>
+              #imagen="ngModel"
+              ngModel required>
               <img src="{{base64}}" height="100px"> 
             </div>
+            <span *ngIf="imagen.invalid && imagen.touched" class="error">Ingrese Fecha</span>
           </div>
           <br>
   
           <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
+            <button type="submit"  [disabled]="f.invalid" class="btn btn-outline-dark" (click)="c('Save click')">Agregar</button>
           </div>
         </form>
       </div>

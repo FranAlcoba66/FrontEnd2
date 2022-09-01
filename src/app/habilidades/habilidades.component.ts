@@ -5,7 +5,7 @@ import { ModalDismissReasons, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-
 import { Habilidad } from '../Models/habilidad.model';
 import { HabilidadService } from '../Services/habilidad.service';
 import { TokenService } from '../Services/token.service';
-
+import  Swal from  'sweetalert2' ;
 
 @Component({
   selector: 'app-habilidades',
@@ -84,6 +84,12 @@ export class HabilidadesComponent implements OnInit {
     console.log(f.form.value);
     this.HabilidadService.addHabilidad(f.value)
       .subscribe((result) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Excelente',
+          text: 'Habilidad ingresada!',
+          timer:2000 ,
+        })
         this.ngOnInit(); // reload the table
       });
       f.form.value.logo=this.base64='';
