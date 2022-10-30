@@ -1,27 +1,35 @@
-# Cursos
+<i>NOTA: En este repositorio se encuentra todo lo relacionado al Frontend del proyecto, para dirigirse al repositorio del Backend hacer click <a href="https://github.com/FranAlcoba66/BackEnd-AP" target="_blank">aquí.</a></i>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+<h1>Proyecto Argentina Programa Portfolio Personal (FrontEnd)</h1>
 
-## Development server
+##  Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este proyecto fue mi primer proyecto que realice en programación, se trata de un portfolio web SPA(Single Page Aplication), completamente editable consumiendo una API realizada por mí en Java para poder editar y traer de la base de datos mi información personal, fue un curso completamente auto gestionado seguí la maquetación que fue dada en el curso y pude darle la funcionalidades requeridas, las cuales son:
 
-## Code scaffolding
+- <b>Navbar:</b> En este módulo tenemos la barra de navegación, la cual posee el logo de Argentina Programa, las redes sociales, botón de login y botón para el modo nocturno
+- <b>Header:</b> En este módulo tenemos banner, información personal e imagen personal
+- <b>Acerca De:</b> En este módulo tenemos mi información personal más detallada y stack tecnológico manejado hasta el momento
+- <b>Educación:</b> En este módulo tenemos toda mi información académica
+- <b>Experiencia:</b> En este módulo tenemos toda mi información laboral
+- <b>Habilidades:</b> En este módulo tenemos toda la información de las habilidades técnicas y blandas
+- <b>Proyectos:</b> En este módulo tenemos toda la información de proyectos realizados por mi
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<b>Implementaciones Bonus</b>: 
 
-## Build
+- <b>Validacion de formularios</b> 
+- <b>Sweet Alerts</b> (Notifiaciones en al agregado y edicion de los diferentes modulos)
+- <b>JWT-Spring Security</b> 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<h2>Herramientas utilizadas en el desarrollo</h2>
 
-## Running unit tests
+- <b>Git/GitHub</b> Versionado de la app
+- <b>Angular + Bootstrap + NgBootstrap</b> 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Importante
 
-## Running end-to-end tests
+- <b>URL de la Primera versión:</b> <a href="https://frontendap-e608c.web.app/" target="_blank"> Link</a>
+- <b>Contacto:</b> <a href="franciscoadrianalcoba@gmail.com" target="_blank"> Mail</a>,<a href="https://www.linkedin.com/in/francisco-adri%C3%A1n-alcoba/" target="_blank"> Linkedin</a>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Agradecimientos
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Quiero agradecer a mis compañeros de <a href="https://discord.gg/UBCGfbmq" target="_blank">Discord</a> que sin el apoyo que nos damos a diario y el grupo de estudio que creamos entre todos, hubiera sido más difícil este proyecto
