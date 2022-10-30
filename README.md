@@ -28,7 +28,7 @@ Este proyecto fue mi primer proyecto que realice en programación, se trata de u
 ## Importante
 
 - <b>URL de la Primera versión:</b> <a href="https://frontendap-e608c.web.app/" target="_blank"> Link</a>
-- <b>Contacto:</b> <a href="franciscoadrianalcoba@gmail.com" target="_blank"> Mail</a>,<a href="https://www.linkedin.com/in/francisco-adri%C3%A1n-alcoba/" target="_blank"> Linkedin</a>
+- <b>Contacto:</b> <a href="mailto:franciscoadrianalcoba@gmail.com" target="_blank"> Mail</a>,<a href="https://www.linkedin.com/in/francisco-adri%C3%A1n-alcoba/" target="_blank"> Linkedin</a>
 
 ## Agradecimientos
 
