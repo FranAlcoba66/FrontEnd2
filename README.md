@@ -6,7 +6,7 @@
 
 Este proyecto fue mi primer proyecto que realice en programación, se trata de un portfolio web SPA(Single Page Aplication), completamente editable consumiendo una API realizada por mí en Java para poder editar y traer de la base de datos mi información personal, fue un curso completamente auto gestionado seguí la maquetación que fue dada en el curso y pude darle la funcionalidades requeridas, las cuales son:
 
-- <b>Navbar:</b> En este módulo tenemos la barra de navegación, la cual posee el logo de Argentina Programa, las redes sociales, botón de login y botón para el modo nocturno
+- <b>Navbar:</b> En este módulo tenemos la barra de navegación, la cual posee el logo de Argentina Programa, las redes sociales y botón de login.
 - <b>Header:</b> En este módulo tenemos banner, información personal e imagen personal
 - <b>Acerca De:</b> En este módulo tenemos mi información personal más detallada y stack tecnológico manejado hasta el momento
 - <b>Educación:</b> En este módulo tenemos toda mi información académica
