@@ -18,7 +18,6 @@ Este proyecto fue mi primer proyecto que realice en programación, se trata de u
 
 - <b>Validacion de formularios</b> 
 - <b>Sweet Alerts</b> (Notifiaciones en al agregado y edicion de los diferentes modulos)
-- <b>JWT-Spring Security</b> 
 
 <h2>Herramientas utilizadas en el desarrollo</h2>
 
